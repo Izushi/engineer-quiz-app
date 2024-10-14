@@ -21,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create');
     }
 
     /**
@@ -29,7 +29,13 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $category = new Category();
+        $category->name = $validated['name'];
+        $category->description = $validated['description'];
+        $category->save();
+
+        return redirect()->route('admin.top')->with('success', 'Category created successfully.');
     }
 
     /**
