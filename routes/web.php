@@ -22,12 +22,11 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
-    Route::get('top', function () {
-        return view('admin.top');
-    })->name('top');
+    Route::get('top', [CategoryController::class, 'top'])->name('top');
 
     Route::prefix('categories')->name('categories.')->group(function () {
         Route::get('create', [CategoryController::class, 'create'])->name('create');
         Route::post('store', [CategoryController::class, 'store'])->name('store');
+        Route::get('{categoryId}', [CategoryController::class, 'show'])->name('show');
     });
 });

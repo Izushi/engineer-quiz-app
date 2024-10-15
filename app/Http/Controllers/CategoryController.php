@@ -6,15 +6,18 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function top()
     {
-        //
+        $category = new Category();
+        $categories = $category->get();
+        return view('admin.top', compact('categories'));
     }
 
     /**
@@ -25,7 +28,7 @@ class CategoryController extends Controller
         $sessionData = session()->all();
         Log::info('Session Data:', $sessionData);
 
-        return view('admin.category.create');
+        return view('admin.categories.create');
     }
 
     /**
@@ -48,9 +51,11 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Request $request, int $categoryId)
     {
-        //
+        $category = new Category();
+        $selectedCategory = $category->find($categoryId);
+        return view('admin.categories.show', compact('selectedCategory'));
     }
 
     /**
