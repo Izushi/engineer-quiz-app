@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\Log;
 
 class CategoryController extends Controller
 {
@@ -21,6 +22,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
+        $sessionData = session()->all();
+        Log::info('Session Data:', $sessionData);
+
         return view('admin.category.create');
     }
 
@@ -29,6 +33,9 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        $sessionData = session()->all();
+        Log::info('Session Data:', $sessionData);
+
         $validated = $request->validated();
         $category = new Category();
         $category->name = $validated['name'];
