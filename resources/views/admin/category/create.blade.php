@@ -66,9 +66,7 @@
                                     @else
                                         border-gray-300
                                     @enderror
-                                    ease-in-out">
-                                    {{ old('description') }}
-                            </textarea>
+                                    ease-in-out">{{ old('description') }}</textarea>
                             @error('description')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
