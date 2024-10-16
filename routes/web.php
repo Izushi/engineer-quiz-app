@@ -30,5 +30,6 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('{categoryId}', [CategoryController::class, 'show'])->name('show');
         Route::get('{categoryId}/edit', [CategoryController::class, 'edit'])->name('edit');
         Route::post('{categoryId}/update', [CategoryController::class, 'update'])->name('update');
+        Route::post('{categoryId}/destroy', [CategoryController::class, 'destroy'])->name('destroy');
     });
 });
