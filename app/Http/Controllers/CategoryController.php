@@ -15,8 +15,7 @@ class CategoryController extends Controller
      */
     public function top()
     {
-        $category = new Category();
-        $categories = $category->get();
+        $categories = Category::get();
         return view('admin.top', compact('categories'));
     }
 
@@ -53,9 +52,8 @@ class CategoryController extends Controller
      */
     public function show(Request $request, int $categoryId)
     {
-        $category = new Category();
-        $selectedCategory = $category->find($categoryId);
-        return view('admin.categories.show', compact('selectedCategory'));
+        $category = Category::find($categoryId);
+        return view('admin.categories.show', compact('category'));
     }
 
     /**

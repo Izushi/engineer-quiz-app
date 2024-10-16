@@ -14,7 +14,10 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+    </section>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-5 mx-auto">
             <div class="lg:w-2/3 w-full mx-auto overflow-auto mt-6">
                 <table class="table-auto w-full text-left whitespace-no-wrap">
                     <thead>
