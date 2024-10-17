@@ -31,13 +31,9 @@ class QuizController extends Controller
      */
     public function store(StoreQuizRequest $request, int $categoryId)
     {
-        $validatedReq = $request->validated();
-        dd($validatedReq);
         $quiz = new Quiz();
         $quiz->category_id = $categoryId;
-        // $quiz->question = $request->question;
-        $quiz->question = $validatedReq['question'];
-        dd($quiz->question);
+        $quiz->question = $request->question;
         $quiz->explanation = $request->explanation;
         $quiz->save();
         $quizId = $quiz->id;
