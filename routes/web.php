@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\QuizController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -31,5 +32,10 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::get('{categoryId}/edit', [CategoryController::class, 'edit'])->name('edit');
         Route::post('{categoryId}/update', [CategoryController::class, 'update'])->name('update');
         Route::post('{categoryId}/destroy', [CategoryController::class, 'destroy'])->name('destroy');
+
+        Route::prefix('{categoryId}/quizzes')->name('quizzes.')->group(function () {
+            Route::get('create', [QuizController::class, 'create'])->name('create');
+            Route::post('store', [QuizController::class, 'store'])->name('store');
+        });
     });
 });
