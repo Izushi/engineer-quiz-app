@@ -38,6 +38,7 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
             Route::post('store', [QuizController::class, 'store'])->name('store');
             Route::get('{quizId}/edit', [QuizController::class, 'edit'])->name('edit');
             Route::post('{quizId}/update', [QuizController::class, 'update'])->name('update');
+            Route::post('{quizId}/destroy', [QuizController::class, 'destroy'])->name('destroy');
         });
     });
 });

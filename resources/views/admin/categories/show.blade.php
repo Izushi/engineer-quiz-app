@@ -71,10 +71,14 @@
                                         </button>
                                     </td>
                                     <td class="px-4 py-3 text-lg text-gray-900">
-                                        <button
-                                            class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                                            Delete
-                                        </button>
+                                        <form method="POST"
+                                            action="{{ route('admin.categories.quizzes.destroy', ['categoryId' => $category->id, 'quizId' => $quiz->id]) }}">
+                                            @csrf
+                                            <button type="submit"
+                                                class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
+                                                Delete
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
