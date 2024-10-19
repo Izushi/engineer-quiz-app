@@ -36,6 +36,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
         Route::prefix('{categoryId}/quizzes')->name('quizzes.')->group(function () {
             Route::get('create', [QuizController::class, 'create'])->name('create');
             Route::post('store', [QuizController::class, 'store'])->name('store');
+            Route::get('{quizId}/edit', [QuizController::class, 'edit'])->name('edit');
+            Route::post('{quizId}/update', [QuizController::class, 'update'])->name('update');
         });
     });
 });
