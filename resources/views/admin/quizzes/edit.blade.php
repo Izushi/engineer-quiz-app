@@ -82,81 +82,160 @@
                         </div>
                     </div>
 
-                    @for ($i = 1; $i <= 4; $i++)
-                        {{-- Send optionId 1-4 with hidden --}}
-                        <input type="hidden" name="optionId{{ $i }}" value="{{ $options[$i - 1]->id }}" />
-                        <div class="p-2 w-full">
-                            <div class="relative">
-                                <label for="content"
-                                    class="leading-7 text-sm text-gray-600">Option{{ $i }}</label>
-                                <input type="text" id="content{{ $i }}" name="content{{ $i }}"
-                                    class="w-full
-                                        bg-gray-100
-                                        bg-opacity-50
-                                        rounded border
-                                        focus:border-indigo-500
-                                        focus:bg-white focus:ring-2
-                                        focus:ring-indigo-200
-                                        text-base outline-none
-                                        text-gray-700
-                                        py-1
-                                        px-3
-                                        leading-8
-                                        transition-colors
-                                        duration-200
-                                        @error('content' . $i)
-                                            border-red-500
-                                        @else
-                                            border-gray-300
-                                        @enderror
-                                        ease-in-out"
-                                    value="{{ old('content' . $i) ? old('content' . $i) : $options[$i - 1]->content }}">
+                    @if ($options->isEmpty())
+                        @for ($i = 1; $i <= 4; $i++)
+                            <div class="p-2 w-full">
+                                <div class="relative">
+                                    <label for="content"
+                                        class="leading-7 text-sm text-gray-600">Option{{ $i }}</label>
+                                    <input type="text" id="content{{ $i }}"
+                                        name="content{{ $i }}"
+                                        class="w-full
+                                            bg-gray-100
+                                            bg-opacity-50
+                                            rounded border
+                                            focus:border-indigo-500
+                                            focus:bg-white focus:ring-2
+                                            focus:ring-indigo-200
+                                            text-base outline-none
+                                            text-gray-700
+                                            py-1
+                                            px-3
+                                            leading-8
+                                            transition-colors
+                                            duration-200
+                                            @error('content' . $i)
+                                                border-red-500
+                                            @else
+                                                border-gray-300
+                                            @enderror
+                                            ease-in-out"
+                                        value="{{ old('content' . $i) }}">
 
-                                @error('content')
-                                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
+                                    @error('content')
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
 
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="p-2 w-full">
-                            <div class="relative">
-                                <label for="isCorrect{{ $i }}"
-                                    class="leading-7 text-sm text-gray-600">Correct or
-                                    Incorrect of Option{{ $i }}</label>
-                                <select id="isCorrect{{ $i }}" name="isCorrect{{ $i }}"
-                                    class="w-full
-                                        bg-gray-100
-                                        bg-opacity-50
-                                        rounded border
-                                        focus:border-indigo-500
-                                        focus:bg-white focus:ring-2
-                                        focus:ring-indigo-200
-                                        text-base outline-none
-                                        text-gray-700
-                                        py-1
-                                        px-3
-                                        leading-8
-                                        transition-colors
-                                        duration-200
-                                        @error('isCorrect' . $i)
-                                            border-red-500
-                                        @else
-                                            border-gray-300
-                                        @enderror
-                                        ease-in-out"
-                                    value="{{ old('isCorrect' . $i) ? old('isCorrect' . $i) : $options[$i - 1]->is_correct }}">
-                                    <option @selected($options[$i - 1]->is_correct === 1) value="1">Correct</option>
-                                    <option @selected($options[$i - 1]->is_correct === 0) value="0">Incorrect</option>
-                                </select>
+                            <div class="p-2 w-full">
+                                <div class="relative">
+                                    <label for="isCorrect{{ $i }}"
+                                        class="leading-7 text-sm text-gray-600">Correct or
+                                        Incorrect of Option{{ $i }}</label>
+                                    <select id="isCorrect{{ $i }}" name="isCorrect{{ $i }}"
+                                        class="w-full
+                                            bg-gray-100
+                                            bg-opacity-50
+                                            rounded border
+                                            focus:border-indigo-500
+                                            focus:bg-white focus:ring-2
+                                            focus:ring-indigo-200
+                                            text-base outline-none
+                                            text-gray-700
+                                            py-1
+                                            px-3
+                                            leading-8
+                                            transition-colors
+                                            duration-200
+                                            @error('isCorrect' . $i)
+                                                border-red-500
+                                            @else
+                                                border-gray-300
+                                            @enderror
+                                            ease-in-out"
+                                        value="{{ old('isCorrect' . $i) }}">
+                                        <option value="1">Correct</option>
+                                        <option value="0">Incorrect</option>
+                                    </select>
 
-                                @error('isCorrect' . $i)
-                                    <span class="text-red-500 text-sm">{{ $message }}</span>
-                                @enderror
+                                    @error('isCorrect' . $i)
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
 
+                                </div>
                             </div>
-                        </div>
-                    @endfor
+                        @endfor
+                    @else
+                        @for ($i = 1; $i <= 4; $i++)
+                            {{-- Send optionId 1-4 with hidden --}}
+                            <input type="hidden" name="optionId{{ $i }}"
+                                value="{{ $options[$i - 1]->id }}" />
+                            <div class="p-2 w-full">
+                                <div class="relative">
+                                    <label for="content"
+                                        class="leading-7 text-sm text-gray-600">Option{{ $i }}</label>
+                                    <input type="text" id="content{{ $i }}"
+                                        name="content{{ $i }}"
+                                        class="w-full
+                                            bg-gray-100
+                                            bg-opacity-50
+                                            rounded border
+                                            focus:border-indigo-500
+                                            focus:bg-white focus:ring-2
+                                            focus:ring-indigo-200
+                                            text-base outline-none
+                                            text-gray-700
+                                            py-1
+                                            px-3
+                                            leading-8
+                                            transition-colors
+                                            duration-200
+                                            @error('content' . $i)
+                                                border-red-500
+                                            @else
+                                                border-gray-300
+                                            @enderror
+                                            ease-in-out"
+                                        value="{{ old('content' . $i) ? old('content' . $i) : $options[$i - 1]->content }}">
+
+                                    @error('content')
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
+
+                                </div>
+                            </div>
+
+                            <div class="p-2 w-full">
+                                <div class="relative">
+                                    <label for="isCorrect{{ $i }}"
+                                        class="leading-7 text-sm text-gray-600">Correct or
+                                        Incorrect of Option{{ $i }}</label>
+                                    <select id="isCorrect{{ $i }}" name="isCorrect{{ $i }}"
+                                        class="w-full
+                                            bg-gray-100
+                                            bg-opacity-50
+                                            rounded border
+                                            focus:border-indigo-500
+                                            focus:bg-white focus:ring-2
+                                            focus:ring-indigo-200
+                                            text-base outline-none
+                                            text-gray-700
+                                            py-1
+                                            px-3
+                                            leading-8
+                                            transition-colors
+                                            duration-200
+                                            @error('isCorrect' . $i)
+                                                border-red-500
+                                            @else
+                                                border-gray-300
+                                            @enderror
+                                            ease-in-out"
+                                        value="{{ old('isCorrect' . $i) ? old('isCorrect' . $i) : $options[$i - 1]->is_correct }}">
+                                        <option @selected($options[$i - 1]->is_correct === 1) value="1">Correct</option>
+                                        <option @selected($options[$i - 1]->is_correct === 0) value="0">Incorrect</option>
+                                    </select>
+
+                                    @error('isCorrect' . $i)
+                                        <span class="text-red-500 text-sm">{{ $message }}</span>
+                                    @enderror
+
+                                </div>
+                            </div>
+                        @endfor
+                    @endif
 
                     <div class="p-2 w-full">
                         <button type="submit"
